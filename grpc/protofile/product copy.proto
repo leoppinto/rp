@@ -1,0 +1,16 @@
+syntax = "proto3";
+
+option go_package = "grpc/pb";
+
+message Product{
+    string name = 1; 
+}
+
+message ProductResult{
+    string id   = 1;
+    string name = 2;
+}
+
+service ProductService{
+    rpc CreateProduct(Product) returns(ProductResult){};
+}
