@@ -1,7 +1,9 @@
 package main
 
-import "rp"
+import (
+	"rp/server"
+)
 
 func main() {
-	rp.StartServer()
+	server.StartServer()
 }

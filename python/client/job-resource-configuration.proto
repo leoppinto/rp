@@ -2,10 +2,6 @@ syntax = "proto3";
 
 option go_package = "grpc/pb";
 
-service JobResourceConfigurationService {
-    rpc GetByJobId(GetByJobIdRequest) returns (GetByJobIdResponse) {}
-}
-
 message GetByJobIdRequest {
     string jobid = 1;
     string defautexecutor =2;
@@ -19,4 +15,8 @@ message GetByJobIdResponse {
 message ResourceCreated {
     int64 id =1 ;
     string provider = 2;
+}
+
+service JobResourceConfigurationService {
+    rpc GetByJobId(GetByJobIdRequest) returns (GetByJobIdResponse) {}
 }
