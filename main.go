@@ -1,29 +1,34 @@
 package rp
 
 import (
+	"google.golang.org/grpc"
 	"log"
 	"net"
 	"rp/grpc/pb"
 	"rp/model"
 	"rp/service"
-
-	"google.golang.org/grpc"
 )
 
 var ProductsList = model.NewProducts()
+var JobConfigurationService = model.NewJobResouceConfigurations()
 
 func StartServer() {
 
 	lis, err := net.Listen("tcp", "192.168.0.15:8300")
 	if err != nil {
-		log.Print("Erro ao se conectar")
+		log.Print("[ERROR] Grpc Server not connected")
 	}
-
 	grpcServer := grpc.NewServer()
+
 	productService := service.NewProductGrpcServer(ProductsList)
 	pb.RegisterProductServiceServer(grpcServer, productService)
 
-	log.Print("Servidor Conectado")
+	jobConfigurationService := service.NewJobResourceConfigurationGrpcServer(JobConfigurationService)
+	pb.RegisterJobResourceConfigurationServiceServer(grpcServer, jobConfigurationService)
 
-	_ = grpcServer.Serve(lis)
+	log.Print("[INFO] Server Gprc Connected")
+	log.Print("[INFO] Job Configuration Service Started")
+	log.Print("[INFO] Product Service Started")
+
+	grpcServer.Serve(lis)
 }
