@@ -2,19 +2,20 @@ package main
 
 import (
 	"context"
+	"fmt"
+	"google.golang.org/grpc"
 	"log"
 	"rp/grpc/pb"
-
-	"google.golang.org/grpc"
 )
 
 func main() {
 
 	var conn *grpc.ClientConn
-	conn, err := grpc.Dial(":8300", grpc.WithInsecure())
+	conn, err := grpc.Dial("192.168.0.15:8300", grpc.WithInsecure())
 
 	if err != nil {
 		log.Fatalf("did not connect: %s", err)
+		fmt.Println("Leonardo")
 	}
 	defer conn.Close()
 
