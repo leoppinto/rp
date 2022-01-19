@@ -67,7 +67,7 @@ func main() {
 
 	jobConfigurationServer := pb.NewJobResourceConfigurationServiceClient(conn)
 
-	span, ctx := opentracing.StartSpanFromContext(context.Background(), "Get_job_id_client_start_request")
+	span, ctx := opentracing.StartSpanFromContext(context.Background(), "Get_job_id_client_init_request")
 	time.Sleep(time.Duration(2) * time.Millisecond)
 	span.Finish()
 
