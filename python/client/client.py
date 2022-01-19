@@ -1,7 +1,7 @@
 import grpc
 
-import product_pb2
-import product_pb2_grpc
+import job_resource_configuration
+import job_resource_configuration_grpc
 
 channel = grpc.insecure_channel('192.168.0.15:8300')
 stub = product_pb2_grpc.ProductServiceStub(channel)

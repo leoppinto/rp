@@ -2,8 +2,10 @@ package service
 
 import (
 	"context"
+	"github.com/opentracing/opentracing-go"
 	"rp/grpc/pb"
 	"rp/model"
+	"time"
 )
 
 type JobResourceConfigurationGrpcServer struct {
@@ -12,6 +14,11 @@ type JobResourceConfigurationGrpcServer struct {
 }
 
 func (p *JobResourceConfigurationGrpcServer) GetByJobId(ctx context.Context, in *pb.GetByJobIdRequest) (*pb.GetByJobIdResponse, error) {
+
+	span, ctx := opentracing.StartSpanFromContext(ctx, "Get_job_id_server_init_response")
+	time.Sleep(time.Duration(2) * time.Millisecond)
+	span.Finish()
+
 	return &pb.GetByJobIdResponse{
 		Idrequest: 123,
 		ResourceCreated: &pb.ResourceCreated{
